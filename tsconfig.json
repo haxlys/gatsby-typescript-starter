@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "esnext", // gatsby 내부에서 babel로 다시 컴파일(gatsby 브라우저 지원 https://www.gatsbyjs.com/docs/babel/)
+    "jsx": "preserve",
+    "lib": ["dom", "esnext"],
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "noUnusedLocals": false,
+    "allowJs": true
+  },
+  "exclude": ["node_modules", "public", ".cache"]
+}
