@@ -15,7 +15,7 @@ type FluidProps = {
   originalName: string
 } & FluidObject
 
-const Spec = ({ location }: PageProps) => {
+const Specify = ({ location }: PageProps) => {
   const data = useStaticQuery(graphql`
     query GatsbyLogoQuery {
       allFile(filter: { absolutePath: { regex: "/-icon.+/" } }) {
@@ -44,6 +44,7 @@ const Spec = ({ location }: PageProps) => {
   const files = data?.allFile.nodes.map(
     (n: ChildImageSharpProps) => n.childImageSharp.fluid
   )
+
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title="spec" />
@@ -63,4 +64,4 @@ const Spec = ({ location }: PageProps) => {
   )
 }
 
-export default Spec
+export default Specify

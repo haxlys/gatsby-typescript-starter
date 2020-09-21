@@ -19,7 +19,7 @@ const Main = ({ location }: PageProps) => {
 
   const { data: ditto } = useSWR('https://pokeapi.co/api/v2/pokemon/ditto')
   const { data: dittoForm, error } = useSWR(
-    ['https://pokeapi.co/api/v2/pokemon-form', ditto?.id],
+    ditto?.id ? ['https://pokeapi.co/api/v2/pokemon-form', ditto?.id] : null,
     (url, id) =>
       fetch(`${url}/${id}`)
         .then((res) => res.json())
