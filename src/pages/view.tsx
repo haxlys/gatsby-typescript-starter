@@ -1,9 +1,17 @@
 import React from 'react'
 import { Link, graphql, useStaticQuery, PageProps } from 'gatsby'
 import useSWR from 'swr'
+import { setupWorker, rest } from 'msw'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
+
+// fetch('https://pokeapi.co/api/v2/pokemon/ditto')
+//   .then((res) => res.json())
+//   .then((data) => {
+//     console.log(data)
+//     return data
+//   })
 
 const Main = ({ location }: PageProps) => {
   const queryData = useStaticQuery(graphql`
@@ -17,9 +25,11 @@ const Main = ({ location }: PageProps) => {
   `)
   const siteTitle = queryData?.site?.siteMetadata?.title
 
-  const { data: ditto } = useSWR('https://pokeapi.co/api/v2/pokemon/ditto')
-  const { data: dittoForm, error } = useSWR(
-    ['https://pokeapi.co/api/v2/pokemon-form', ditto?.id],
+  const hi = useSWR('https://pokeapi.co/api/v2/pokemon/ditto')
+  const { data: ditto, error } = hi
+  console.log('ditto :>> ', ditto)
+  const { data: dittoForm } = useSWR(
+    [ditto?.id ? 'https://pokeapi.co/api/v2/pokemon-form' : null, ditto?.id],
     (url, id) =>
       fetch(`${url}/${id}`)
         .then((res) => res.json())
