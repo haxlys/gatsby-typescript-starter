@@ -6,4 +6,3 @@ describe('utils is', () => {
   })
 })
 
-// test-library-react 로 테스트 구현...

@@ -25,11 +25,9 @@ const Main = ({ location }: PageProps) => {
   `)
   const siteTitle = queryData?.site?.siteMetadata?.title
 
-  const hi = useSWR('https://pokeapi.co/api/v2/pokemon/ditto')
-  const { data: ditto, error } = hi
-  console.log('ditto :>> ', ditto)
-  const { data: dittoForm } = useSWR(
-    [ditto?.id ? 'https://pokeapi.co/api/v2/pokemon-form' : null, ditto?.id],
+  const { data: ditto } = useSWR('https://pokeapi.co/api/v2/pokemon/ditto')
+  const { data: dittoForm, error } = useSWR(
+    ditto?.id ? ['https://pokeapi.co/api/v2/pokemon-form', ditto?.id] : null,
     (url, id) =>
       fetch(`${url}/${id}`)
         .then((res) => res.json())
